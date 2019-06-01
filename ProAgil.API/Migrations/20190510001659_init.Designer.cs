@@ -31,10 +31,13 @@ namespace ProAgil.API.Migrations
                     b.Property<int>("QtdPessoas");
 
                     b.Property<string>("Tema");
+                    
+                    b.Property<string>("ImagemUrl");
 
                     b.HasKey("EventoId");
 
                     b.ToTable("Eventos");
+                    
                 });
 #pragma warning restore 612, 618
         }
