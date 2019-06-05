@@ -15,7 +15,7 @@ export class EventosComponent implements OnInit {
   }
   set filtroLista(value: string) {
     this._filtroLista = value;
-    this.eventosFiltrados = this.filtroLista ? this.filtrarEvento(this.filtroLista) : this.eventos;
+    this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
   }
   eventosFiltrados: any = [];
   eventos: any = [];
@@ -33,8 +33,9 @@ export class EventosComponent implements OnInit {
   filtrarEventos(filtratPor: string): any{
     filtratPor = filtratPor.toLocaleLowerCase();
     return this.eventos.filter(
-      evento => evento.tema.toLocaleLowerCase().indexOf(filtratPor)
-    )
+      evento => evento.tema.toLocaleLowerCase().indexOf(filtratPor) !== -1
+      
+    );
   }
   alternarImgem(){
     this.mostrarImagem = !this.mostrarImagem;
