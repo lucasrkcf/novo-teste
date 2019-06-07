@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System;
 namespace ProAgil.Domain
 {
     public class Evento
@@ -6,7 +8,7 @@ namespace ProAgil.Domain
 
         public string Local {get; set;}
 
-        public string DateTime DataEvento {get; set;}
+        public DateTime DataEvento {get; set;}
 
         public string Tema {get; set;}
 

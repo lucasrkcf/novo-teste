@@ -19,7 +19,7 @@ namespace ProAgil.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PalestranteEvento>()
-            .HasKey(PE => new {PE.EventoId,PE.PalestranteId});
+            .HasKey(PE => new { PE.EventoId, PE.PalestranteId });
         }
        
     }
