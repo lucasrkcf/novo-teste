@@ -63,8 +63,8 @@ namespace ProAgil.Repository
                 .ThenInclude(p => p.palestrante);
             }
 
-            query = query.OrderByDescending(c => c.DataEvento);
-                            .where(c => c.tema.ToLower().Contains(tema.ToLower));
+            query = query.OrderByDescending(c => c.DataEvento)
+                            .Where(c => c.Tema.ToLower().Contains(tema.ToLower()));
             return await query.ToArrayAsync();
         }
 
@@ -81,8 +81,8 @@ namespace ProAgil.Repository
                 .ThenInclude(p => p.palestrante);
             }
 
-            query = query.OrderByDescending(c => c.DataEvento);
-                            .where(c => c.id == EventoId);
+            query = query.OrderByDescending(c => c.DataEvento)
+                            .Where(c => c.Id == EventoId);
             return await query.FirstOrDefaultAsync();
         }
 
@@ -101,13 +101,13 @@ namespace ProAgil.Repository
                 .ThenInclude(e => e.Evento);
             }
 
-            query = query.OrderBy(p => p.Nome);
-            .where(p => p.Id == PalestranteId);
+            query = query.OrderBy(p => p.Nome)
+            .Where(p => p.Id == PalestranteId);
 
             return await query.FirstOrDefaultAsync();
         }
 
-         public Task<Palestrante[]> GetAllPalestrantesAsyncByName(string name, bool includeEventos = false)
+         public async Task<Palestrante[]> GetAllPalestrantesAsyncByName(string name, bool includeEventos = false)
         {
             
              IQueryable<Palestrante> query =_context.Palestrantes
@@ -121,11 +121,14 @@ namespace ProAgil.Repository
                 .ThenInclude(e => e.Evento);
             }
 
-            query = query.where(p => p.Nome.ToLower().Contains(name.ToLower()));
+            query = query.Where(p => p.Nome.ToLower().Contains(name.ToLower()));
 
-            return await query.FirstOrDefaultAsync();
+            return await query.ToArrayAsync();
         }
 
-     
+        public Task<Palestrante[]> GetAllPalestrantesAsyncByName(bool includeEventos)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
