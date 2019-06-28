@@ -46,5 +46,96 @@ namespace ProAgil.API.Controllers
             }
             
         }
+
+            [HttpGet("getByTema/{tema}")]
+        public async Task <IActionResult> Get(string tema)
+        {
+            try
+            {
+                var results = await _repo.GetAllEventoAsyncByTema(tema, true);
+
+                 return Ok(results);
+            }
+            catch (System.Exception)
+            {
+              return this.StatusCode(StatusCodes.Status500InternalServerError,"Banco de dados falhou");  
+            }
+            
+        }
+
+
+            [HttpPost]
+        public async Task <IActionResult> Post(Evento model)
+        {
+            try
+            {
+                _repo.Add(model);
+
+                if(_repo.SAveChangesAsync())
+                {
+                  return Created($"/api/evento/{model.Id}", model);
+                }
+
+                 
+            }
+            catch (System.Exception)
+            {
+              return this.StatusCode(StatusCodes.Status500InternalServerError,"Banco de dados falhou");  
+            }
+            
+            return BadRequest();
+        }
+
+        [HttpPut]
+        public async Task <IActionResult> Put(int EventoId, Evento model)
+        {
+            try
+            {
+              var evento = await _repo.GetEventoAsyncById(EventoId, false);
+              if(evento == null) return NotFound();
+
+
+                _repo.Update(model);
+
+                if(await _repo.SAveChangesAsync())
+                {
+                  return Created($"/api/evento/{model.Id}", model);
+                }
+
+                 
+            }
+            catch (System.Exception)
+            {
+              return this.StatusCode(StatusCodes.Status500InternalServerError,"Banco de dados falhou");  
+            }
+            
+            return BadRequest();
+        }
+
+         [HttpDelete]
+        public async Task <IActionResult> Delete(int EventoId)
+        {
+            try
+            {
+              var evento = await _repo.GetEventoAsyncById(EventoId, false);
+              if(evento == null) return NotFound();
+
+
+                _repo.Delete(evento);
+
+                if(await _repo.SAveChangesAsync())
+                {
+                  return Ok();
+                }
+
+                 
+            }
+            catch (System.Exception)
+            {
+              return this.StatusCode(StatusCodes.Status500InternalServerError,"Banco de dados falhou");  
+            }
+            
+            return BadRequest();
+        }
     }
 }
