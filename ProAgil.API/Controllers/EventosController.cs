@@ -5,7 +5,7 @@ using ProAgil.Repository;
 using ProAgil.Domain;
 
 namespace ProAgil.API.Controllers {
-  [Route ("api/[controler]")]
+  [Route ("api/[controller]")]
   [ApiController]
   public class EventosController : ControllerBase {
     private readonly IProAgilRepository _repo;
@@ -17,7 +17,7 @@ namespace ProAgil.API.Controllers {
     [HttpGet]
     public async Task<IActionResult> Get () {
       try {
-        var results = await _repo.GetAllEventoAsync (true);
+        var results = await _repo.GetAllEventoAsync(true);
         return Ok (results);
       } catch (System.Exception) {
         return this.StatusCode (StatusCodes.Status500InternalServerError, "Banco de dados falhou");
@@ -26,7 +26,7 @@ namespace ProAgil.API.Controllers {
     }
 
     [HttpGet ("{EventoId}")]
-    public async Task<IActionResult> Get (int EventoId) {
+    public async Task<IActionResult> Get(int EventoId) {
       try {
         var results = await _repo.GetEventoAsyncById (EventoId, true);
 
