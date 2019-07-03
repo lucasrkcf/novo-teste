@@ -40,7 +40,7 @@
              <td>{{evento.id}}</td>
             <td>{{evento.tema}}</td>
              <td>{{evento.local}}</td>
-             <td>{{evento.dataEvento}}</td>
+             <td>{{evento.dataEvento | DateTimeFormatPipe}}</td>
              <td>{{evento.qtdPessoas}}</td>
              <td>
                  <div *ngIf="!evento.lotes.lengh">
@@ -51,8 +51,15 @@
                  </div>
              </td>
             <td>
-                <button class="btn btn-success"></button>
-                <button class="btn btn-danger"></button>
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-success" 
+                    tooltip="Editar" (click)="openModal(template)" >
+                    <i class = "fa fa-edit" ></i>
+                </button>
+                    <button class="btn btn-sm btn-danger" tooltip="Excluir">
+                    <i class = "fa fa-eraser" ></i>
+                </button>
+                </div>
             </td>
          </tr>
      </tbody>
@@ -68,3 +75,84 @@
     </tfoot> 
     </table>
 
+    <ng-template #template>
+            <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal</h4>
+            <button type="button" class="close pull-right" 
+            aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            <div class="modal-body">
+            This is a modal.
+        </div>
+        </ng-template>
+
+        <form [formGroup]="registerForm">
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label>Tema</label>
+                    <input type="text" class="form-control is-invalid" formControlName="tema">
+                    <div class="invalid-feedback">
+                      O tema é obrigatório.
+                    </div>
+                  </div>
+                </div>  
+                <div class="form-row">
+                  <div class="form-group col-md-8">
+                    <label>Local</label>
+                    <input type="text" class="form-control is-invalid" formControlName="local">
+                    <div class="invalid-feedback">
+                        O tema é obrigatório.
+                      </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Data e Hora</label>
+                    <input type="text" class="form-control is-invalid" formControlName="dataEvento">
+                    <div class="invalid-feedback">
+                        O tema é obrigatório.
+                      </div>
+                  </div>
+                </div>  
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label>Qtd Pessoas</label>
+                    <input type="text" class="form-control is-invalid" formControlName="qtdPessoas">
+                    <div class="invalid-feedback">
+                        O tema é obrigatório.
+                      </div>
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label>Imagem</label>
+                    <input type="text" class="form-control is-invalid" formControlName="imagemURL">
+                    <div class="invalid-feedback">
+                        O tema é obrigatório.
+                      </div>
+                  </div>
+                </div>  
+                <div class="form-row">
+                  <div class="form-group col-md-8">
+                    <label>Telefone</label>
+                    <input type="text" class="form-control is-invalid" formControlName="telefone">
+                    <div class="invalid-feedback">
+                        O tema é obrigatório.
+                      </div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Email</label>
+                    <input type="text" class="form-control is-invalid" formControlName="email">
+                    <div class="invalid-feedback">
+                        O tema é obrigatório.
+                      </div>
+                  </div>
+                </div> 
+              </form>
+              <br>
+              <button class="btn btn-secondary" (click)="openModal(template)">
+                Fechar
+              </button>
+              <button class="btn btn-primary" (click)="salvarAlteracao()">
+                Salvar Alterações
+              </button>
+              <br>
+              <br>
