@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClient } from 'selenium-webdriver/http';
-import { ModalModule, BsDropdownModule, TooltipModule } from 'ngx-bootstrap';
+import { ModalModule, BsDropdownModule, TooltipModule, BsDatepickerModule } from 'ngx-bootstrap';
 
 import { EventoService } from './_services/evento.service';
 
@@ -13,6 +13,7 @@ import { EventosComponent } from './eventos/eventos.component';
 import { AppComponent } from './app.component';
 
 import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
    declarations: [
@@ -24,6 +25,8 @@ import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
    imports: [
       BrowserModule,
       BsDropdownModule.forRoot(),
+      BrowserAnimationsModule,
+      BsDatepickerModule.forRoot(),
       TooltipModule.forRoot(),
       ModalModule.forRoot(),
       AppRoutingModule,
