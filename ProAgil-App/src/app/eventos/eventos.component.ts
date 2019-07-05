@@ -65,6 +65,7 @@ export class EventosComponent implements OnInit {
 
   confirmeDelete(template: any) {
     this.eventoService.deleteEvento(this.evento.id).subscribe(
+
       () => {
           template.hide();
           this.getEventos();

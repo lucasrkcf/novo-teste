@@ -9,6 +9,6 @@ namespace ProAgil.Domain
         
         public int EventoId { get; set; }
 
-        public Evento Evento { get; set; }
+        public Evento Evento { get; } // estava com set
     }
 }
