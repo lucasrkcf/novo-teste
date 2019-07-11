@@ -4,6 +4,7 @@ import { Evento } from '../_models/Evento';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { defineLocale, BsLocaleService, ptBrLocale } from 'ngx-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 defineLocale('pt-br', ptBrLocale);
 
 @Component({
@@ -12,6 +13,8 @@ defineLocale('pt-br', ptBrLocale);
   styleUrls: ['./eventos.component.css']
 })
 export class EventosComponent implements OnInit {
+
+  titulo = 'Eventos';
 
   eventosFiltrados: Evento[];
   eventos: Evento[];
@@ -31,6 +34,7 @@ export class EventosComponent implements OnInit {
     , private modalService: BsModalService
     , private fb: FormBuilder
     , private localeService: BsLocaleService
+    , private toastr: ToastrService
     ) {
       this.localeService.use('pt-br');
      }
@@ -69,7 +73,9 @@ export class EventosComponent implements OnInit {
       () => {
           template.hide();
           this.getEventos();
+          this.toastr.success('deletado com sucesso');
         }, error => {
+          this.toastr.success('Erro ao tentar deletar');
           console.log(error);
         }
     );
@@ -116,8 +122,9 @@ template.show();
         (novoEvento: Evento) => {
          template.hide();
          this.getEventos();
+         this.toastr.success('Inserido com sucesso');
         }, error => {
-          console.log(error);
+          this.toastr.error(`Erro ao Inserir: ${error}`);
         }
       );
       } else {
@@ -126,8 +133,9 @@ template.show();
         () => {
          template.hide();
          this.getEventos();
+         this.toastr.success('editado com sucesso');
         }, error => {
-          console.log(error);
+          this.toastr.error(`Erro ao Editar: ${error}`);
         }
       );
       }
@@ -141,9 +149,8 @@ getEventos() {
     (_eventos: Evento[]) => {
     this.eventos = _eventos;
     this.eventosFiltrados = this.eventos;
-    console.log(_eventos);
 }, error => {
-  console.log(error);
+  this.toastr.error(`Erro ao tentar carregar eventos: ${error}`);
 });
 }
 }
