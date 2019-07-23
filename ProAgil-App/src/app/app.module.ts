@@ -45,9 +45,11 @@ import { RegistrationComponent } from './user/registration/registration.componen
       TooltipModule.forRoot(),
       ModalModule.forRoot(),
       BrowserAnimationsModule,
-      ToastrModule.forRoot(\r\ntimeOut
-   ]
-}),
+      ToastrModule.forRoot({
+         timeOut: 3000,
+         preventDuplicates: true,
+         progressBar: true
+       }),
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
