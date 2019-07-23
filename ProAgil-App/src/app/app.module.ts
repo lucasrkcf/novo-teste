@@ -19,6 +19,10 @@ import { ContatosComponent } from './contatos/contatos.component';
 import { TituloComponent } from './_shared/titulo/titulo.component';
 
 import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './user/login/login.component';
+import { RegistrationComponent } from './user/registration/registration.component';
+
 
 @NgModule({
    declarations: [
@@ -29,6 +33,9 @@ import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
       DashboardComponent,
       ContatosComponent,
       TituloComponent,
+      UserComponent,
+      LoginComponent,
+      RegistrationComponent,
       DateTimeFormatPipePipe
    ],
    imports: [
@@ -38,11 +45,9 @@ import { DateTimeFormatPipePipe } from './_helps/DateTimeFormatPipe.pipe';
       TooltipModule.forRoot(),
       ModalModule.forRoot(),
       BrowserAnimationsModule,
-      ToastrModule.forRoot({
-         timeOut: 3000,
-         preventDuplicates: true,
-         progressBar: true
-       }),
+      ToastrModule.forRoot(\r\ntimeOut
+   ]
+}),
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
