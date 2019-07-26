@@ -26,7 +26,7 @@ email: ['', [Validators.required, Validators.email]],
 userName: ['', Validators.required],
 passwords: this.fb.group({
   password: ['', [Validators.required, Validators.minLength(4)]],
-  confirmPasswor: ['', Validators.required]
+  confirmPassword: ['', Validators.required]
 }, { validator: this.compararSenhas})
 
     });
