@@ -36,7 +36,18 @@ export class EventoEditComponent implements OnInit {
       imagemURL: ['', Validators.required],
       qtdPessoas: ['', [Validators.required, Validators.max(120000)]],
       telefone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      lotes: this.fb.group({
+        nome:['', Validators.required],
+        quantidade:['', Validators.required],
+        preco:['', Validators.required],
+        dataInicio:[''],
+        dataFim:['']
+      }),
+      redesSociais: this.fb.group({
+      nome:['', Validators.required],
+      url:['', Validators.required]
+      })
     });
   }
 
