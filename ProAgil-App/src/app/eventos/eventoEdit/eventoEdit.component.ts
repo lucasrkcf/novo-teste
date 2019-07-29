@@ -13,6 +13,7 @@ export class EventoEditComponent implements OnInit {
 
   titulo = 'Editar Evento';
   evento = {};
+  imagemURL = 'assets/img/upload.png';
   registerForm: FormGroup;
   constructor(
     private eventoService: EventoService
@@ -33,22 +34,36 @@ export class EventoEditComponent implements OnInit {
       tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       local: ['', Validators.required],
       dataEvento: ['', Validators.required],
-      imagemURL: ['', Validators.required],
+      imagemURL: [''],
       qtdPessoas: ['', [Validators.required, Validators.max(120000)]],
       telefone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      lotes: this.fb.group({
-        nome:['', Validators.required],
-        quantidade:['', Validators.required],
-        preco:['', Validators.required],
-        dataInicio:[''],
-        dataFim:['']
-      }),
-      redesSociais: this.fb.group({
-      nome:['', Validators.required],
-      url:['', Validators.required]
-      })
+      lotes:  this.criaLote(),
+      redesSociais: this.criaRedeSocial()
+    });
+    
+  }
+
+  criaLote(): FormGroup {
+    return this.fb.group({
+      nome: ['', Validators.required],
+      quantidade: ['', Validators.required],
+      preco: ['', Validators.required],
+      dataInicio: [''],
+      dataFim: ['']
     });
   }
 
+  criaRedeSocial(): FormGroup {
+    return this.fb.group({
+      nome:['', Validators.required],
+      url:['', Validators.required]
+      });
+  }
+
+  onFileChange(file: FileList) {
+    const reader = new FileReader();
+    reader.onload = (event: any) => this.imagemURL = event.target.result;
+    reader.readAsDataURL(file[0]);
+  }
 }
