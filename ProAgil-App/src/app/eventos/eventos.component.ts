@@ -141,7 +141,6 @@ template.show();
       }
     );
     } else {
-      this.evento.imagemURL = this.fileNameToUpdate;
       this.eventoService.postUpload(this.file, this.fileNameToUpdate)
       .subscribe(
         () => {
@@ -189,6 +188,7 @@ template.show();
   }
 
 getEventos() {
+  this.dataAtual = new Date().getMilliseconds().toString();
   this.eventoService.getAllEvento().subscribe(
 // tslint:disable-next-line: variable-name
     (_eventos: Evento[]) => {
