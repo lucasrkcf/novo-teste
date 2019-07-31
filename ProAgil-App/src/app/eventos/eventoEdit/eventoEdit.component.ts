@@ -67,6 +67,7 @@ export class EventoEditComponent implements OnInit {
 
   validation() {
     this.registerForm = this.fb.group({
+      id: [],
       tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
       local: ['', Validators.required],
       dataEvento: ['', Validators.required],
@@ -126,7 +127,7 @@ export class EventoEditComponent implements OnInit {
     this.evento.imagemURL = this.fileNameToUpdate;
         this.uploadImagem();
 
-        this.eventoService.putEvento(this.evento).subscribe(
+    this.eventoService.putEvento(this.evento).subscribe(
         () => {
          this.toastr.success('editado com sucesso');
         }, error => {

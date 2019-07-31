@@ -24,7 +24,7 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-
+import { NgxCurrencyModule } from 'ngx-currency';
 
 @NgModule({
    declarations: [
@@ -58,6 +58,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
+      NgxCurrencyModule,
       ReactiveFormsModule
    ],
    providers: [
